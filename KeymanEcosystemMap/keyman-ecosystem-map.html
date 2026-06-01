@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyman Ecosystem Map</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --ink: #0f172a;
+    --muted: #475569;
+    --line: #cbd5e1;
+    --line-soft: #e2e8f0;
+
+    --st-veryactive: #16a34a;
+    --st-active:     #2563eb;
+    --st-low:        #f59e0b;
+    --st-dormant:    #f97316;
+    --st-archived:   #6b7280;
+
+    --lang-pascal:    #b91c1c;
+    --lang-cpp:       #6d28d9;
+    --lang-ts:        #2563eb;
+    --lang-js:        #ca8a04;
+    --lang-swift:     #ea580c;
+    --lang-objc:      #94a3b8;
+    --lang-kotlin:    #059669;
+    --lang-java:      #92400e;
+    --lang-dart:      #0891b2;
+    --lang-php:       #4338ca;
+    --lang-html:      #db2777;
+    --lang-shell:     #4b5563;
+    --lang-python:    #0e7490;
+    --lang-xml:       #7c3aed;
+  }
+  html,body { background: var(--bg); color: var(--ink); margin:0;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif; }
+  .wrap { max-width: 1520px; margin: 0 auto; padding: 24px 24px 56px; }
+  h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 18px; font-size: 14px; }
+
+  .legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+  .legend h3 { font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--muted); margin: 0 0 8px; font-weight: 700;}
+  .legend .row { display: flex; flex-wrap: wrap; gap: 10px 14px; font-size: 12.5px; }
+  .legend .pill { display:inline-flex; align-items:center; gap:6px; }
+  .legend .dot { width: 10px; height: 10px; border-radius: 50%; display:inline-block; }
+  .legend .chip { display:inline-flex; align-items:center; justify-content:center;
+    width: 18px; height: 18px; border-radius: 4px; font-size: 10.5px; font-weight: 700;
+    color: white; }
+
+  svg.map { width: 100%; height: auto; display: block;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+
+  .footer-note { color: var(--muted); font-size: 12px; margin-top: 10px; }
+  code { background: #eef2f7; padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Keyman Ecosystem Map</h1>
+  <p class="sub">Eight repositories under <code>github.com/keymanapp</code>, with the <b>keyman</b> monorepo expanded into its nine principal sub-trees. Arrows show producer→consumer flow.</p>
+
+  <div class="legend">
+    <div>
+      <h3>Status</h3>
+      <div class="row">
+        <span class="pill"><span class="dot" style="background:var(--st-veryactive)"></span>Very active (daily commits)</span>
+        <span class="pill"><span class="dot" style="background:var(--st-active)"></span>Active</span>
+        <span class="pill"><span class="dot" style="background:var(--st-low)"></span>Low activity</span>
+        <span class="pill"><span class="dot" style="background:var(--st-dormant)"></span>Dormant</span>
+        <span class="pill"><span class="dot" style="background:var(--st-archived)"></span>Archived</span>
+      </div>
+    </div>
+    <div>
+      <h3>OS coverage chips</h3>
+      <div class="row">
+        <span class="pill"><span class="chip" style="background:#1d4ed8">W</span>Windows</span>
+        <span class="pill"><span class="chip" style="background:#475569">M</span>macOS</span>
+        <span class="pill"><span class="chip" style="background:#b45309">L</span>Linux</span>
+        <span class="pill"><span class="chip" style="background:#15803d">A</span>Android</span>
+        <span class="pill"><span class="chip" style="background:#334155">i</span>iOS</span>
+        <span class="pill"><span class="chip" style="background:#0284c7">W3</span>Web</span>
+      </div>
+    </div>
+    <div>
+      <h3>Languages</h3>
+      <div class="row">
+        <span class="pill"><span class="dot" style="background:var(--lang-pascal)"></span>Pascal</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-cpp)"></span>C++</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-ts)"></span>TypeScript</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-swift)"></span>Swift</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-objc)"></span>Obj-C</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-kotlin)"></span>Kotlin</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-java)"></span>Java</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-dart)"></span>Dart</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-php)"></span>PHP</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-python)"></span>Python</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-shell)"></span>Shell</span>
+        <span class="pill"><span class="dot" style="background:var(--lang-xml)"></span>LDML XML</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== MAP ============================== -->
+  <svg class="map" viewBox="0 0 1500 1340" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Arrowheads -->
+      <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+      </marker>
+      <marker id="arrow-soft" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+      </marker>
+      <marker id="arrow-dim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#cbd5e1"/>
+      </marker>
+
+      <!-- Band labels style -->
+      <style>
+        .band-label { font: 700 11px "Segoe UI", system-ui, sans-serif; fill: #64748b;
+                     letter-spacing: 0.14em; text-transform: uppercase; }
+        .card-title { font: 700 16px "Segoe UI", system-ui, sans-serif; fill: #0f172a; }
+        .card-sub   { font: 400 11.5px "Segoe UI", system-ui, sans-serif; fill: #475569; }
+        .stat       { font: 600 10px "Segoe UI", system-ui, sans-serif; fill: #334155; }
+        .stat-val   { font: 700 11px "Segoe UI", system-ui, sans-serif; fill: #0f172a; }
+        .comp-title { font: 700 13.5px "Segoe UI", system-ui, sans-serif; fill: #0f172a; }
+        .comp-sub   { font: 400 10.5px "Segoe UI", system-ui, sans-serif; fill: #475569; }
+        .flow       { font: 600 11px "Segoe UI", system-ui, sans-serif; fill: #475569; }
+        .flow-soft  { font: 500 10.5px "Segoe UI", system-ui, sans-serif; fill: #64748b;
+                     font-style: italic; }
+        .os-letter  { font: 700 10px "Segoe UI", system-ui, sans-serif; fill: white; text-anchor: middle; }
+        .hub-title  { font: 800 22px "Segoe UI", system-ui, sans-serif; fill: #0f172a; letter-spacing: -0.01em; }
+        .hub-sub    { font: 500 12px "Segoe UI", system-ui, sans-serif; fill: #475569; }
+      </style>
+    </defs>
+
+    <!-- Band backgrounds -->
+    <rect x="0" y="60"   width="1500" height="220" fill="#f8fafc"/>
+    <rect x="0" y="290"  width="1500" height="620" fill="#eef2f7"/>
+    <rect x="0" y="920"  width="1500" height="240" fill="#f8fafc"/>
+    <rect x="0" y="1170" width="1500" height="170" fill="#f1f5f9"/>
+
+    <!-- Band titles -->
+    <text x="30" y="80"   class="band-label">Sources — community-authored content</text>
+    <text x="30" y="310"  class="band-label">Engine &amp; apps — the keyman monorepo (9 components)</text>
+    <text x="30" y="940"  class="band-label">Consumers — websites &amp; satellite apps</text>
+    <text x="30" y="1190" class="band-label">Legacy / archived — superseded attempts</text>
+
+    <!-- ============================== SOURCES BAND ============================== -->
+
+    <!-- keyboards -->
+    <g transform="translate(120,100)">
+      <rect width="380" height="160" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+      <rect width="380" height="6" rx="3" fill="var(--st-veryactive)"/>
+      <text x="18" y="36" class="card-title">keyboards</text>
+      <text x="18" y="58" class="card-sub">~1,000 community keyboard layouts</text>
+      <text x="18" y="74" class="card-sub">for ~2,500 languages. Tiers: release / legacy / experimental.</text>
+
+      <!-- Languages -->
+      <g transform="translate(18,92)">
+        <text class="stat" x="0" y="0">LANGUAGES</text>
+        <circle cx="8"   cy="14" r="5" fill="var(--lang-html)"/>
+        <circle cx="22"  cy="14" r="5" fill="var(--lang-xml)"/>
+        <circle cx="36"  cy="14" r="5" fill="var(--lang-shell)"/>
+        <circle cx="50"  cy="14" r="5" fill="var(--lang-ts)"/>
+        <text x="62" y="18" class="card-sub">HTML · LDML XML · .kmn · Shell · TS</text>
+      </g>
+      <!-- Stats -->
+      <g transform="translate(18,128)">
+        <text class="stat" x="0"   y="0">STATUS</text>
+        <text class="stat-val" x="0" y="14">Very active</text>
+        <text class="stat" x="120" y="0">★ STARS</text>
+        <text class="stat-val" x="120" y="14">197</text>
+        <text class="stat" x="200" y="0">ISSUES</text>
+        <text class="stat-val" x="200" y="14">~37</text>
+        <text class="stat" x="270" y="0">SIZE</text>
+        <text class="stat-val" x="270" y="14">~1.2 GB</text>
+      </g>
+    </g>
+
+    <!-- lexical-models -->
+    <g transform="translate(1000,100)">
+      <rect width="380" height="160" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+      <rect width="380" height="6" rx="3" fill="var(--st-active)"/>
+      <text x="18" y="36" class="card-title">lexical-models</text>
+      <text x="18" y="58" class="card-sub">Wordlist / dictionary models that drive</text>
+      <text x="18" y="74" class="card-sub">predictive text in Keyman Web &amp; mobile.</text>
+
+      <g transform="translate(18,92)">
+        <text class="stat" x="0" y="0">LANGUAGES</text>
+        <circle cx="8"  cy="14" r="5" fill="var(--lang-shell)"/>
+        <circle cx="22" cy="14" r="5" fill="var(--lang-ts)"/>
+        <text x="34" y="18" class="card-sub">Shell · TypeScript · .tsv wordlists</text>
+      </g>
+      <g transform="translate(18,128)">
+        <text class="stat" x="0"   y="0">STATUS</text>
+        <text class="stat-val" x="0" y="14">Moderate</text>
+        <text class="stat" x="120" y="0">★ STARS</text>
+        <text class="stat-val" x="120" y="14">19</text>
+        <text class="stat" x="200" y="0">ISSUES</text>
+        <text class="stat-val" x="200" y="14">~13</text>
+        <text class="stat" x="270" y="0">SIZE</text>
+        <text class="stat-val" x="270" y="14">~80 MB</text>
+      </g>
+    </g>
+
+    <!-- ============================== MONOREPO HUB ============================== -->
+
+    <!-- Outer container -->
+    <rect x="80" y="340" width="1340" height="560" rx="14" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+    <rect x="80" y="340" width="1340" height="64" rx="14" fill="#0f172a"/>
+    <rect x="80" y="384" width="1340" height="20" fill="#0f172a"/>
+    <text x="110" y="372" class="hub-title" fill="#ffffff">keymanapp / keyman</text>
+    <text x="110" y="395" class="hub-sub" fill="#cbd5e1">monorepo · Pascal+C++ at the bottom, TS at the top · 514★ · ~1,186 open issues · ~508 MB · master branch · MIT</text>
+
+    <!-- OS coverage strip on hub -->
+    <g transform="translate(1140,358)">
+      <circle cx="0"   cy="6" r="11" fill="#1d4ed8"/><text x="0"  y="10" class="os-letter">W</text>
+      <circle cx="26"  cy="6" r="11" fill="#475569"/><text x="26" y="10" class="os-letter">M</text>
+      <circle cx="52"  cy="6" r="11" fill="#b45309"/><text x="52" y="10" class="os-letter">L</text>
+      <circle cx="78"  cy="6" r="11" fill="#15803d"/><text x="78" y="10" class="os-letter">A</text>
+      <circle cx="104" cy="6" r="11" fill="#334155"/><text x="104" y="10" class="os-letter">i</text>
+      <circle cx="130" cy="6" r="11" fill="#0284c7"/><text x="130" y="10" class="os-letter">W3</text>
+    </g>
+
+    <!-- 9 components in 3x3 grid -->
+    <!-- Grid cell size: 420 wide x 145 tall; gap 20. Origin x=110, y=420 -->
+
+    <!-- Row 1: SHARED / FOUNDATION -->
+    <text x="110" y="416" class="band-label" style="font-size:10px">Row 1 — shared foundation</text>
+
+    <!-- core -->
+    <g transform="translate(110,425)">
+      <rect width="420" height="135" rx="8" fill="#fefce8" stroke="#a3a3a3"/>
+      <rect width="420" height="4"  rx="2" fill="var(--lang-cpp)"/>
+      <text x="14" y="26" class="comp-title">core/</text>
+      <text x="14" y="44" class="comp-sub">libkeyman_core — cross-platform C++ engine that</text>
+      <text x="14" y="58" class="comp-sub">processes every keystroke. All platforms call into it.</text>
+      <g transform="translate(14,72)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-cpp)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-ts)"/>
+        <text x="32" y="10" class="card-sub">C++ · TypeScript bindings</text>
+      </g>
+      <g transform="translate(14,98)">
+        <circle cx="9"  cy="6" r="9" fill="#1d4ed8"/><text x="9"  y="10" class="os-letter">W</text>
+        <circle cx="33" cy="6" r="9" fill="#475569"/><text x="33" y="10" class="os-letter">M</text>
+        <circle cx="57" cy="6" r="9" fill="#b45309"/><text x="57" y="10" class="os-letter">L</text>
+        <circle cx="81" cy="6" r="9" fill="#15803d"/><text x="81" y="10" class="os-letter">A</text>
+        <circle cx="105" cy="6" r="9" fill="#334155"/><text x="105" y="10" class="os-letter">i</text>
+        <circle cx="129" cy="6" r="9" fill="#0284c7"/><text x="129" y="10" class="os-letter">W3</text>
+      </g>
+    </g>
+
+    <!-- common -->
+    <g transform="translate(550,425)">
+      <rect width="420" height="135" rx="8" fill="#fefce8" stroke="#a3a3a3"/>
+      <rect width="420" height="4" rx="2" fill="var(--lang-ts)"/>
+      <text x="14" y="26" class="comp-title">common/</text>
+      <text x="14" y="44" class="comp-sub">Shared schemas, models, web/JS libraries</text>
+      <text x="14" y="58" class="comp-sub">consumed by web, developer, and other components.</text>
+      <g transform="translate(14,72)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-ts)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-js)"/>
+        <text x="32" y="10" class="card-sub">TypeScript · JavaScript</text>
+      </g>
+      <g transform="translate(14,98)">
+        <circle cx="9"  cy="6" r="9" fill="#0284c7"/><text x="9" y="10" class="os-letter">W3</text>
+        <text x="28" y="10" class="card-sub">(language-agnostic schemas)</text>
+      </g>
+    </g>
+
+    <!-- developer -->
+    <g transform="translate(990,425)">
+      <rect width="420" height="135" rx="8" fill="#fefce8" stroke="#a3a3a3"/>
+      <rect width="420" height="4" rx="2" fill="var(--lang-pascal)"/>
+      <text x="14" y="26" class="comp-title">developer/</text>
+      <text x="14" y="44" class="comp-sub">Keyman Developer IDE + the kmc compiler that</text>
+      <text x="14" y="58" class="comp-sub">builds keyboards &amp; lexical models. The toolchain.</text>
+      <g transform="translate(14,72)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-pascal)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-ts)"/>
+        <circle cx="34" cy="6" r="5" fill="var(--lang-cpp)"/>
+        <text x="46" y="10" class="card-sub">Pascal (IDE) · TypeScript (kmc) · C++</text>
+      </g>
+      <g transform="translate(14,98)">
+        <circle cx="9"  cy="6" r="9" fill="#1d4ed8"/><text x="9"  y="10" class="os-letter">W</text>
+        <text x="28" y="10" class="card-sub">IDE: Windows-only · kmc: cross-platform Node</text>
+      </g>
+    </g>
+
+    <!-- Row 2: WEB + DESKTOP -->
+    <text x="110" y="576" class="band-label" style="font-size:10px">Row 2 — web &amp; desktop</text>
+
+    <!-- web -->
+    <g transform="translate(110,585)">
+      <rect width="420" height="135" rx="8" fill="#ecfeff" stroke="#a3a3a3"/>
+      <rect width="420" height="4" rx="2" fill="var(--lang-ts)"/>
+      <text x="14" y="26" class="comp-title">web/</text>
+      <text x="14" y="44" class="comp-sub">KeymanWeb — in-browser keyboard engine. Drives</text>
+      <text x="14" y="58" class="comp-sub">keymanweb.com &amp; embeds on third-party sites.</text>
+      <g transform="translate(14,72)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-ts)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-js)"/>
+        <text x="32" y="10" class="card-sub">TypeScript · JavaScript</text>
+      </g>
+      <g transform="translate(14,98)">
+        <circle cx="9"  cy="6" r="9" fill="#0284c7"/><text x="9" y="10" class="os-letter">W3</text>
+        <text x="28" y="10" class="card-sub">Any browser (also embedded in mobile WebViews)</text>
+      </g>
+    </g>
+
+    <!-- windows -->
+    <g transform="translate(550,585)">
+      <rect width="420" height="135" rx="8" fill="#eff6ff" stroke="#a3a3a3"/>
+      <rect width="420" height="4" rx="2" fill="var(--lang-pascal)"/>
+      <text x="14" y="26" class="comp-title">windows/</text>
+      <text x="14" y="44" class="comp-sub">Keyman for Windows — the historical mothership.</text>
+      <text x="14" y="58" class="comp-sub">Long-running Pascal/Delphi codebase, still primary.</text>
+      <g transform="translate(14,72)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-pascal)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-cpp)"/>
+        <text x="32" y="10" class="card-sub">Pascal/Delphi · C++</text>
+      </g>
+      <g transform="translate(14,98)">
+        <circle cx="9"  cy="6" r="9" fill="#1d4ed8"/><text x="9" y="10" class="os-letter">W</text>
+        <text x="28" y="10" class="card-sub">Windows only</text>
+      </g>
+    </g>
+
+    <!-- mac -->
+    <g transform="translate(990,585)">
+      <rect width="420" height="135" rx="8" fill="#f5f3ff" stroke="#a3a3a3"/>
+      <rect width="420" height="4" rx="2" fill="var(--lang-swift)"/>
+      <text x="14" y="26" class="comp-title">mac/</text>
+      <text x="14" y="44" class="comp-sub">Keyman for macOS — input-method bundle.</text>
+      <text x="14" y="58" class="comp-sub">Wraps libkeyman_core via Swift/Obj-C.</text>
+      <g transform="translate(14,72)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-swift)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-objc)"/>
+        <circle cx="34" cy="6" r="5" fill="var(--lang-cpp)"/>
+        <text x="46" y="10" class="card-sub">Swift · Obj-C · C++</text>
+      </g>
+      <g transform="translate(14,98)">
+        <circle cx="9" cy="6" r="9" fill="#475569"/><text x="9" y="10" class="os-letter">M</text>
+        <text x="28" y="10" class="card-sub">macOS only</text>
+      </g>
+    </g>
+
+    <!-- Row 3: MOBILE + LINUX -->
+    <text x="110" y="736" class="band-label" style="font-size:10px">Row 3 — mobile &amp; linux</text>
+
+    <!-- linux -->
+    <g transform="translate(110,745)">
+      <rect width="420" height="135" rx="8" fill="#fff7ed" stroke="#a3a3a3"/>
+      <rect width="420" height="4" rx="2" fill="var(--lang-cpp)"/>
+      <text x="14" y="26" class="comp-title">linux/</text>
+      <text x="14" y="44" class="comp-sub">IBus integration — runs as an input-method engine</text>
+      <text x="14" y="58" class="comp-sub">under IBus on GNOME / KDE / others.</text>
+      <g transform="translate(14,72)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-cpp)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-python)"/>
+        <circle cx="34" cy="6" r="5" fill="var(--lang-shell)"/>
+        <text x="46" y="10" class="card-sub">C++ · Python · Shell</text>
+      </g>
+      <g transform="translate(14,98)">
+        <circle cx="9" cy="6" r="9" fill="#b45309"/><text x="9" y="10" class="os-letter">L</text>
+        <text x="28" y="10" class="card-sub">Linux only (also see onboard-keyman)</text>
+      </g>
+    </g>
+
+    <!-- android -->
+    <g transform="translate(550,745)">
+      <rect width="420" height="135" rx="8" fill="#ecfdf5" stroke="#a3a3a3"/>
+      <rect width="420" height="4" rx="2" fill="var(--lang-kotlin)"/>
+      <text x="14" y="26" class="comp-title">android/</text>
+      <text x="14" y="44" class="comp-sub">Keyman for Android — system keyboard (IME).</text>
+      <text x="14" y="58" class="comp-sub">Loads KeymanWeb inside a WebView + JNI to core.</text>
+      <g transform="translate(14,72)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-kotlin)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-java)"/>
+        <circle cx="34" cy="6" r="5" fill="var(--lang-cpp)"/>
+        <text x="46" y="10" class="card-sub">Kotlin · Java · C++ (JNI)</text>
+      </g>
+      <g transform="translate(14,98)">
+        <circle cx="9" cy="6" r="9" fill="#15803d"/><text x="9" y="10" class="os-letter">A</text>
+        <text x="28" y="10" class="card-sub">Android only</text>
+      </g>
+    </g>
+
+    <!-- ios -->
+    <g transform="translate(990,745)">
+      <rect width="420" height="135" rx="8" fill="#f1f5f9" stroke="#a3a3a3"/>
+      <rect width="420" height="4" rx="2" fill="var(--lang-swift)"/>
+      <text x="14" y="26" class="comp-title">ios/</text>
+      <text x="14" y="44" class="comp-sub">Keyman for iPhone &amp; iPad — system keyboard</text>
+      <text x="14" y="58" class="comp-sub">extension. Embeds KeymanWeb in WKWebView.</text>
+      <g transform="translate(14,72)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-swift)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-objc)"/>
+        <circle cx="34" cy="6" r="5" fill="var(--lang-cpp)"/>
+        <text x="46" y="10" class="card-sub">Swift · Obj-C · C++</text>
+      </g>
+      <g transform="translate(14,98)">
+        <circle cx="9" cy="6" r="9" fill="#334155"/><text x="9" y="10" class="os-letter">i</text>
+        <text x="28" y="10" class="card-sub">iOS / iPadOS only</text>
+      </g>
+    </g>
+
+    <!-- ============================== CONSUMERS BAND ============================== -->
+
+    <!-- help.keyman.com -->
+    <g transform="translate(60,960)">
+      <rect width="440" height="180" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+      <rect width="440" height="6"  rx="3" fill="var(--st-veryactive)"/>
+      <text x="18" y="36" class="card-title">help.keyman.com</text>
+      <text x="18" y="58" class="card-sub">Docs portal at help.keyman.com. Apache + PHP in Docker.</text>
+      <text x="18" y="74" class="card-sub">Hosts content; most of it is deployed in from other repos.</text>
+
+      <g transform="translate(18,92)">
+        <text class="stat" x="0" y="0">DEPLOYED-IN PATHS</text>
+        <text x="0" y="14" class="card-sub">/keyboard/ ← keyboards</text>
+        <text x="0" y="28" class="card-sub">/products/{win,mac,linux,android,ios}/ ← keyman</text>
+        <text x="0" y="42" class="card-sub">/developer/&lt;ver&gt;/ ← keyman</text>
+      </g>
+      <g transform="translate(18,150)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-php)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-html)"/>
+        <circle cx="34" cy="6" r="5" fill="var(--lang-shell)"/>
+        <text x="46" y="10" class="card-sub">PHP · HTML · Shell  ·  Very active  ·  ~298 MB</text>
+      </g>
+    </g>
+
+    <!-- api.keyman.com -->
+    <g transform="translate(530,960)">
+      <rect width="440" height="180" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+      <rect width="440" height="6" rx="3" fill="var(--st-active)"/>
+      <text x="18" y="36" class="card-title">api.keyman.com</text>
+      <text x="18" y="58" class="card-sub">Database backend for the keyman.com sites.</text>
+      <text x="18" y="74" class="card-sub">PHP on Apache + SQL Server for Linux, both in Docker.</text>
+
+      <g transform="translate(18,92)">
+        <text class="stat" x="0" y="0">PURPOSE</text>
+        <text x="0" y="14" class="card-sub">Keyboard catalog, language metadata,</text>
+        <text x="0" y="28" class="card-sub">downloads info, JSON catalog</text>
+        <text x="0" y="42" class="card-sub">(r.keymanweb.com/api/4.0/keyboards/).</text>
+      </g>
+      <g transform="translate(18,150)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-php)"/>
+        <circle cx="20" cy="6" r="5" fill="var(--lang-shell)"/>
+        <text x="32" y="10" class="card-sub">PHP · Shell · MS SQL  ·  Moderate  ·  ~13 MB</text>
+      </g>
+    </g>
+
+    <!-- keyman-browser -->
+    <g transform="translate(1000,960)">
+      <rect width="440" height="180" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+      <rect width="440" height="6" rx="3" fill="var(--st-low)"/>
+      <text x="18" y="36" class="card-title">keyman-browser</text>
+      <text x="18" y="58" class="card-sub">Flutter mobile browser. Injects fonts from installed</text>
+      <text x="18" y="74" class="card-sub">Keyman keyboards to defeat the "tofu" box problem.</text>
+
+      <g transform="translate(18,92)">
+        <text class="stat" x="0" y="0">DIRECTION</text>
+        <text x="0" y="14" class="card-sub">Android-first (minSdk 21).</text>
+        <text x="0" y="28" class="card-sub">iOS port = TODO (app group + Flutter</text>
+        <text x="0" y="42" class="card-sub">MethodChannel into Keyman-iOS).</text>
+      </g>
+      <g transform="translate(18,150)">
+        <circle cx="6" cy="6" r="5" fill="var(--lang-dart)"/>
+        <circle cx="20" cy="6" r="9" fill="#15803d"/><text x="20" y="10" class="os-letter">A</text>
+        <text x="36" y="10" class="card-sub">Dart / Flutter · Android · low activity · ~1.9 MB</text>
+      </g>
+    </g>
+
+    <!-- ============================== LEGACY/ARCHIVED BAND ============================== -->
+
+    <!-- developer.keyman.com -->
+    <g transform="translate(200,1200)" opacity="0.78">
+      <rect width="500" height="125" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="6 4"/>
+      <rect width="500" height="6" rx="3" fill="var(--st-dormant)"/>
+      <text x="18" y="34" class="card-title" fill="#475569">developer.keyman.com  <tspan font-size="11" fill="#94a3b8">— dormant since 2022</tspan></text>
+      <text x="18" y="56" class="card-sub">"Keyman Developer Online" — NestJS + Angular SaaS letting users</text>
+      <text x="18" y="72" class="card-sub">contribute keyboards without the 1 GB Developer install. Pinned to Node 12.</text>
+      <g transform="translate(18,92)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-ts)"/>
+        <text x="18" y="10" class="card-sub">TypeScript (NestJS + Angular)  ·  dependabot-only since 2022  ·  ~2.3 MB</text>
+      </g>
+    </g>
+
+    <!-- keyman-vancouver -->
+    <g transform="translate(800,1200)" opacity="0.7">
+      <rect width="500" height="125" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="2 3"/>
+      <rect width="500" height="6" rx="3" fill="var(--st-archived)"/>
+      <text x="18" y="34" class="card-title" fill="#475569">keyman-vancouver  <tspan font-size="11" fill="#94a3b8">— archived 2025</tspan></text>
+      <text x="18" y="56" class="card-sub">Prototype next-gen Keyman Developer on Theia + VSCode plugins.</text>
+      <text x="18" y="72" class="card-sub">Architectural record; the keyman-kpj extension is the reusable artifact.</text>
+      <g transform="translate(18,92)">
+        <circle cx="6"  cy="6" r="5" fill="var(--lang-ts)"/>
+        <text x="18" y="10" class="card-sub">TypeScript (Theia + VSCode plugins, Electron)  ·  archived  ·  ~1.3 MB</text>
+      </g>
+    </g>
+
+    <!-- ============================== CONNECTIONS ============================== -->
+
+    <!-- keyboards → developer (kmc compiles) -->
+    <path d="M 310 260 C 310 350, 800 360, 1200 425" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <rect x="540" y="296" width="160" height="22" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="620" y="312" class="flow" text-anchor="middle">compiled by kmc</text>
+
+    <!-- lexical-models → developer (kmc compiles) -->
+    <path d="M 1190 260 C 1190 320, 1300 360, 1200 425" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <rect x="1175" y="296" width="160" height="22" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="1255" y="312" class="flow" text-anchor="middle">compiled by kmc</text>
+
+    <!-- keyboards → help.keyman.com  (publishes /keyboard/) -->
+    <path d="M 215 260 C 215 600, 80 800, 130 960" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#arrow-soft)"/>
+    <rect x="40" y="660" width="140" height="22" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="110" y="676" class="flow" text-anchor="middle">PR merge → /keyboard/</text>
+
+    <!-- keyman monorepo (developer/) → help.keyman.com (deploys /products, /developer) -->
+    <path d="M 280 900 C 280 935, 280 935, 280 960" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <rect x="160" y="912" width="260" height="22" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="290" y="928" class="flow" text-anchor="middle">help-keyman-com.sh deploys docs</text>
+
+    <!-- keyman monorepo → api.keyman.com (sites consume) -->
+    <path d="M 750 900 C 750 925, 750 935, 750 960" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arrow-soft)"/>
+    <rect x="640" y="912" width="220" height="22" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="750" y="928" class="flow-soft" text-anchor="middle">sites query the DB backend</text>
+
+    <!-- keyman monorepo (web + android) → keyman-browser (uses installed keyboards) -->
+    <path d="M 1220 900 C 1220 925, 1220 935, 1220 960" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <rect x="1080" y="912" width="280" height="22" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="1220" y="928" class="flow" text-anchor="middle">uses installed keyboards &amp; fonts</text>
+
+    <!-- help.keyman.com → api.keyman.com (consumes) -->
+    <path d="M 500 1050 L 530 1050" fill="none" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arrow-soft)"/>
+
+    <!-- developer.keyman.com -.-> keyboards (was a contribution route) -->
+    <path d="M 250 1200 C 200 1100, 100 700, 215 260" fill="none" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="2 4" marker-end="url(#arrow-dim)"/>
+    <rect x="30" y="1100" width="220" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="140" y="1116" class="flow-soft" text-anchor="middle">(was) browser-based contribution</text>
+
+    <!-- keyman-vancouver -.-> developer/ inside monorepo (would-have-replaced) -->
+    <path d="M 1050 1200 C 1100 1080, 1300 720, 1200 560" fill="none" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="2 4" marker-end="url(#arrow-dim)"/>
+    <rect x="1180" y="1100" width="230" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="1295" y="1116" class="flow-soft" text-anchor="middle">(prototype next-gen Developer)</text>
+
+    <!-- developer.keyman.com -.-> keyman-vancouver (superseded by) -->
+    <path d="M 700 1260 L 800 1260" fill="none" stroke="#cbd5e1" stroke-width="1.4" stroke-dasharray="2 4" marker-end="url(#arrow-dim)"/>
+    <text x="750" y="1252" class="flow-soft" text-anchor="middle">superseded by</text>
+
+  </svg>
+
+  <p class="footer-note">
+    Solid arrows = real, automated producer→consumer flows. Soft dashed arrows = looser runtime dependency.
+    Dim dotted arrows in the bottom band = historical / superseded relationships, not active today.
+    Sub-component rows inside the keyman monorepo are grouped by deployment target (shared / web+desktop / mobile+linux), not by build order.
+  </p>
+</div>
+</body>
+</html>
